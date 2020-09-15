@@ -28,6 +28,20 @@ apiMock.onGet("repositories").reply(200, [
     techs: ["React Native", "Node.js"],
     likes: 0,
   },
+  {
+    id: "c36ada27-3cc1-43b2-9d99-b959778aeb50",
+    title: "Desafio asdfadsf",
+    url: "https://github.com/josepholiveira",
+    techs: ["Ruby", "Angular"],
+    likes: 0,
+  },
+  {
+    id: "e7f2107e-a088-4c60-9962-d5d7032f4dcf",
+    title: "Desafio qwerewrer",
+    url: "https://github.com/josepholiveira",
+    techs: ["VueJS", "Node.js"],
+    likes: 0,
+  },
 ]);
 
 jest.mock(

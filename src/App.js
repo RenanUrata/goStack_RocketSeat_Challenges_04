@@ -17,17 +17,20 @@ export default function App() {
 
   useEffect(() => {
     api.get('repositories').then(
-      response => setRepositories(response.data)
-    )
+      response => {
+        setRepositories(response.data)
+        // response.data.map(
+        //   repo=>console.log(repo.techs)
+        // )
+      })
   }, [])
 
   async function handleLikeRepository(id) {
     const response = await api.post(`repositories/${id}/like`)
     const likedRepository = response.data
-    const repoUpdate = repositories.map(repo=>{
-      if(repo.id === id ){return likedRepository }else{return repo} 
-    })    
-
+    const repoUpdate = repositories.map(repo => {
+      if (repo.id === id) { return likedRepository } else { return repo }
+    })
     setRepositories(repoUpdate)
   }
 
@@ -35,6 +38,7 @@ export default function App() {
     <>
       <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
       <SafeAreaView style={styles.container}>
+        {/* {console.log(repositories) } */}
 
         <FlatList
           data={repositories}
@@ -43,13 +47,11 @@ export default function App() {
             <View style={styles.repositoryContainer}>
               <Text style={styles.repository}>{repository.title}</Text>
               <View style={styles.techsContainer}>
-                {
-                  repository.techs.map(tech => {
-                    <Text key={tech} style={styles.tech}>
-                      {tech}
-                    </Text>
-                  })
-                }
+                {repository.techs.map(tech =>
+                  <Text key={tech} style={styles.tech}>
+                    {(tech)}
+                  </Text>
+                )}
               </View>
 
               <View style={styles.likesContainer}>
@@ -57,7 +59,7 @@ export default function App() {
                   style={styles.likeText}
                   testID={`repository-likes-${repository.id}`}
                 >
-                  `${repository.likes} curtidas`
+                  {repository.likes} curtidas
               </Text>
               </View>
 
